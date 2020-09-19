@@ -24,9 +24,10 @@ class App extends Component {
   };
 
   render() {
+    const { cartItems, error, pageTitle } = this.state;
     return (
       <div className='App'>
-        <Header />
+        <Header pageTitle={pageTitle} cart={cartItems} />
         <Route
           exact
           path='/'
