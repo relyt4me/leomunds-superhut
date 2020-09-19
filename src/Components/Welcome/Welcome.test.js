@@ -12,11 +12,11 @@ describe('Welcome Component', () => {
     );
 
     const welcomeTitle = screen.getByRole('heading', { name: "Welcome to Leomund's Superhut" });
-    // const welcomeMessage = screen.getByText();
+    const welcomeMessage = screen.getByText('To assist Dungeon Masters in running', { exact: false });
     const getStartedButton = screen.getByRole('button', { name: 'Get Started at the Storefront' });
 
     expect(welcomeTitle).toBeInTheDocument();
-    // expect(welcomeMessage).toBeInTheDocument();
+    expect(welcomeMessage).toBeInTheDocument();
     expect(getStartedButton).toBeInTheDocument();
   });
 });
