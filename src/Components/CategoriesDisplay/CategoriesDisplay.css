@@ -1,0 +1,10 @@
+.categories-display {
+  padding: 8vh 10vw 0 10vw;
+  height: 74vh;
+  background-color: #959595;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  overflow-y: scroll;
+}

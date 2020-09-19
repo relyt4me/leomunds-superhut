@@ -18,7 +18,6 @@ class CategoriesDisplay extends Component {
       return (
         <Link to={`/${category.index}`}>
           <CategoryCard name={category.name} />
-          {/* <h1>{category.name}</h1> */}
         </Link>
       );
     });
