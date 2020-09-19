@@ -7,7 +7,7 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import SingleCategoryDisplay from '../SingleCategoryDisplay/SingleCategoryDisplay';
 import Cart from '../Cart/Cart';
 // import SingleItemDisplay from '../SearchItemDisplay/SearchItemDisplay'
-import { Route } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -23,46 +23,53 @@ class App extends Component {
     this.setState({ pageTitle: newTitle });
   };
 
+  setError = (errorMsg) => {
+    this.setState({ error: errorMsg });
+  };
+
   render() {
     const { cartItems, error, pageTitle } = this.state;
     return (
       <div className='App'>
         <Header pageTitle={pageTitle} cart={cartItems} />
-        <Route
-          exact
-          path='/'
-          render={() => {
-            return <Welcome />;
-          }}
-        />
-        <Route
-          path='/storefront'
-          render={() => {
-            // this.changePageTitle("Leomund's Superhut");
-            return <CategoriesDisplay />;
-          }}
-        />
-        <Route
-          path='/error'
-          render={() => {
-            // this.changePageTitle("Leomund's Broken Superhut");
-            return <ErrorPage />;
-          }}
-        />
-        <Route
-          path='/:category/items'
-          render={({ match }) => {
-            // this.changePageTitle(match.params.category);
-            return <SingleCategoryDisplay />;
-          }}
-        />
-        <Route
-          path='/cart'
-          render={() => {
-            // this.changePageTitle('Cart Checkout');
-            return <Cart />;
-          }}
-        />
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={() => {
+              return <Welcome />;
+            }}
+          />
+          <Route
+            path='/storefront'
+            render={() => {
+              // this.changePageTitle("Leomund's Superhut");
+              return <CategoriesDisplay />;
+            }}
+          />
+          <Route
+            path='/error'
+            render={() => {
+              // this.changePageTitle("Leomund's Broken Superhut");
+              return <ErrorPage />;
+            }}
+          />
+          <Route
+            path='/:category/items'
+            render={({ match }) => {
+              // this.changePageTitle(match.params.category);
+              return <SingleCategoryDisplay />;
+            }}
+          />
+          <Route
+            path='/cart'
+            render={() => {
+              // this.changePageTitle('Cart Checkout');
+              return <Cart />;
+            }}
+          />
+        </Switch>
+        {error && <Redirect to='/error' />}
       </div>
     );
   }
