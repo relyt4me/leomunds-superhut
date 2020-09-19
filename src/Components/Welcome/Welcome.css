@@ -1,8 +1,8 @@
 .page-welcome {
   padding: 8vh 10vw 0 10vw;
   height: 74vh;
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: #959595;
   font-family: Indie;
   text-align: center;
   display: grid;
