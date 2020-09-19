@@ -9,7 +9,7 @@ const Header = ({ pageTitle, cart }) => {
       <button className='return-to-storefront-button'>Return to Storefront</button>
       <h1 className='page-title'>{pageTitle}</h1>
       <button className='my-cart-button'>
-        My Cart {cart.length}
+        My Cart <span className='number-in-cart'>{cart.length}</span>
         <img src={horseAndCart} className='horse-cart-img' alt={`Horse pulling a cart`} />
       </button>
     </header>
