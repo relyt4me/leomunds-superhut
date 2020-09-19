@@ -1,0 +1,24 @@
+.page-welcome {
+  padding: 8vh 10vw 0 10vw;
+  height: 74vh;
+  color: black;
+  background-color: #959595;
+  font-family: Indie;
+  text-align: center;
+  display: grid;
+  font-size: 1.5em;
+}
+
+.get-started-button {
+  font-family: Medival;
+  font-size: 1.2em;
+  background-color: white;
+  color: #333333;
+  border: 1px solid #959595;
+  border-radius: 1em;
+  box-shadow: 0px 0px 5px 2px #959595;
+}
+
+.get-started-button:hover {
+  box-shadow: 0px 0px 5px 2px #86100e;
+}
