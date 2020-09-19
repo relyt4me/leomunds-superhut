@@ -1,6 +1,5 @@
 import React from 'react';
 import './Welcome.css';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const Welcome = () => {
@@ -19,8 +18,3 @@ const Welcome = () => {
 };
 
 export default Welcome;
-
-Welcome.propTypes = {
-  pageTitle: PropTypes.string,
-  cart: PropTypes.array,
-};
