@@ -14,7 +14,12 @@ class CategoriesDisplay extends Component {
 
   createCards() {
     return this.state.categories.map((category) => {
-      return <h2>{category.name}</h2>;
+      return (
+        <Link to={`/${category.index}`}>
+          {/* <CategoryCard name={category.name} /> */}
+          <h1>{category.name}</h1>
+        </Link>
+      );
     });
   }
 
@@ -23,7 +28,7 @@ class CategoriesDisplay extends Component {
       .then((results) => {
         this.setState({ categories: results });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => this.props.setError('Vecna has attacked out stores!! Please come back after an adventurer cleans this up.'));
   }
 
   render() {
@@ -33,20 +38,10 @@ class CategoriesDisplay extends Component {
       return <h1>Loading.....</h1>;
     }
   }
-
-  // resultsList = props.drinksList.map((drink) => {
-  //   const alcoholContent = props.nonAlcoholicDrinks.find((nonAlcDrink) => nonAlcDrink.idDrink === drink.idDrink);
-  //   return (
-  //     <Link to={`/recipe/${drink.idDrink}/${drink.strDrink}`} key={drink.idDrink}>
-  //       <DrinkCard id={drink.idDrink} name={drink.strDrink} image={drink.strDrinkThumb} alcoholContent={alcoholContent} />
-  //     </Link>
-  //   );
-  // });
-  // return <section className='categories-display'>CategoriesDisplay</section>;
 }
 
 export default CategoriesDisplay;
 
 CategoriesDisplay.propTypes = {
-  // logoutUser: PropTypes.func
+  setError: PropTypes.func,
 };
