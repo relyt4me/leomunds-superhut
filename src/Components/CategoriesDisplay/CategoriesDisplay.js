@@ -3,6 +3,7 @@ import './CategoriesDisplay.css';
 import { getCategories } from '../../helpers/apiCalls';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import CategoryCard from '../CategoryCard/CategoryCard';
 
 class CategoriesDisplay extends Component {
   constructor(props) {
@@ -16,8 +17,8 @@ class CategoriesDisplay extends Component {
     return this.state.categories.map((category) => {
       return (
         <Link to={`/${category.index}`}>
-          {/* <CategoryCard name={category.name} /> */}
-          <h1>{category.name}</h1>
+          <CategoryCard name={category.name} />
+          {/* <h1>{category.name}</h1> */}
         </Link>
       );
     });
