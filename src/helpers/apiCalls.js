@@ -21,3 +21,13 @@ export const getItemsInCategory = (categoryId) => {
     })
     .then((category) => category.equipment);
 };
+
+export const getItem = (itemId) => {
+  return fetch(`https://www.dnd5eapi.co/api/equipment/${itemId}`).then((response) => {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    } else {
+      return response.json();
+    }
+  });
+};
