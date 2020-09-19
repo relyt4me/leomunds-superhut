@@ -9,6 +9,7 @@
 .return-to-storefront-button,
 .my-cart-button {
   font-family: Indie;
+  font-size: 1.2em;
   background-color: white;
   color: #333333;
   border: 1px solid #959595;
@@ -26,8 +27,8 @@
 }
 
 .my-cart-button {
-  height: 12vh;
-  width: 12vh;
+  height: 14vh;
+  width: 14vh;
   display: grid;
   justify-content: center;
 }
@@ -41,4 +42,9 @@
 
 .horse-cart-img {
   height: 6vh;
+}
+
+.return-to-storefront-button:hover,
+.my-cart-button:hover {
+  box-shadow: 0px 0px 5px 2px #86100e;
 }
