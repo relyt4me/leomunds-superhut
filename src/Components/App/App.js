@@ -15,8 +15,13 @@ class App extends Component {
     this.state = {
       cartItems: [],
       error: '',
+      pageTitle: "Leomund's Superhut",
     };
   }
+
+  changePageTitle = (newTitle) => {
+    this.setState({ pageTitle: newTitle });
+  };
 
   render() {
     return (
@@ -32,24 +37,28 @@ class App extends Component {
         <Route
           path='/storefront'
           render={() => {
+            this.changePageTitle("Leomund's Superhut");
             return <CategoriesDisplay />;
           }}
         />
         <Route
           path='/error'
           render={() => {
+            this.changePageTitle("Leomund's Broken Superhut");
             return <ErrorPage />;
           }}
         />
         <Route
           path='/:category/items'
-          render={() => {
+          render={({ match }) => {
+            this.changePageTitle(match.params.category);
             return <SingleCategoryDisplay />;
           }}
         />
         <Route
           path='/cart'
           render={() => {
+            this.changePageTitle('Cart Checkout');
             return <Cart />;
           }}
         />
