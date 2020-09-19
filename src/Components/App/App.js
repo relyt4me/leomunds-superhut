@@ -38,28 +38,28 @@ class App extends Component {
         <Route
           path='/storefront'
           render={() => {
-            this.changePageTitle("Leomund's Superhut");
+            // this.changePageTitle("Leomund's Superhut");
             return <CategoriesDisplay />;
           }}
         />
         <Route
           path='/error'
           render={() => {
-            this.changePageTitle("Leomund's Broken Superhut");
+            // this.changePageTitle("Leomund's Broken Superhut");
             return <ErrorPage />;
           }}
         />
         <Route
           path='/:category/items'
           render={({ match }) => {
-            this.changePageTitle(match.params.category);
+            // this.changePageTitle(match.params.category);
             return <SingleCategoryDisplay />;
           }}
         />
         <Route
           path='/cart'
           render={() => {
-            this.changePageTitle('Cart Checkout');
+            // this.changePageTitle('Cart Checkout');
             return <Cart />;
           }}
         />
