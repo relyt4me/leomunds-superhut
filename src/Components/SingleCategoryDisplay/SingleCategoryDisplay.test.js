@@ -68,36 +68,36 @@ describe('SingleCategoryDisplay Component', () => {
     expect(allButtons.length).toEqual(3);
   });
 
-  // it('Should show a Loading message until the data comes in', () => {
-  //   const mockCategories = [
-  //     {
-  //       index: 'adventuring-gear',
-  //       name: 'Adventuring Gear',
-  //       url: '/api/equipment-categories/adventuring-gear',
-  //     },
-  //     {
-  //       index: 'ammunition',
-  //       name: 'Ammunition',
-  //       url: '/api/equipment-categories/ammunition',
-  //     },
-  //     {
-  //       index: 'arcane-foci',
-  //       name: 'Arcane Foci',
-  //       url: '/api/equipment-categories/arcane-foci',
-  //     },
-  //   ];
+  it('Should show a Loading message until the data comes in', () => {
+    const mockItemsInCategory = [
+      {
+        index: 'arrow',
+        name: 'Arrow',
+      },
+    ];
 
-  //   getCategories.mockResolvedValueOnce(mockCategories);
-  //   render(
-  //     <MemoryRouter>
-  //       <SingleCategoryDisplay />
-  //     </MemoryRouter>
-  //   );
+    getItemsInCategory.mockResolvedValueOnce(mockItemsInCategory);
 
-  //   const loadingMessage = screen.getByRole('heading', { name: 'Loading...' });
+    const mockArrow = {
+      index: 'arrow',
+      name: 'Arrow',
+      cost: {
+        quantity: 10,
+        unit: 'gp',
+      },
+    };
 
-  //   expect(loadingMessage).toBeInTheDocument();
-  // });
+    getItem.mockResolvedValueOnce(mockArrow);
+    render(
+      <MemoryRouter>
+        <SingleCategoryDisplay />
+      </MemoryRouter>
+    );
+
+    const loadingMessage = screen.getByRole('heading', { name: 'Loading...' });
+
+    expect(loadingMessage).toBeInTheDocument();
+  });
 
   // it('Should call setError on a bad fetch call', async () => {
   //   getCategories.mockResolvedValueOnce(null);
