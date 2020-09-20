@@ -1,11 +1,12 @@
 .category-card {
   border: 1px solid gray;
   border-radius: 0.8em;
-  box-shadow: 0 0 1.2em black;
-  background-color: white;
+  box-shadow: 0 0 1.2em white;
+  background-color: #333333;
   padding: 2vh;
   height: 20vh;
   width: 20vh;
+  font-family: Indie;
 }
 
 .category-card:hover {
@@ -13,5 +14,11 @@
 }
 
 .shelf-icon {
-  height: 4vh;
+  height: 6vh;
+}
+
+.category-card-title {
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.1em;
 }
