@@ -10,14 +10,15 @@
   box-shadow: 0 0 1.2em white;
   color: white;
   height: 9vh;
+  text-align: center;
 }
 
 .add-item-button {
   font-family: Indie;
   display: flex;
-  width: 10vw;
+  width: 8vw;
   padding: 1em;
-  border-radius: 1em;
+  border-radius: 3em;
   justify-content: space-around;
 }
 
@@ -26,5 +27,5 @@
 }
 
 .hand-icon {
-  height: 5vh;
+  height: 4vh;
 }

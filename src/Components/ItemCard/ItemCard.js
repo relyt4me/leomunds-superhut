@@ -28,7 +28,7 @@ class ItemCard extends Component {
     return (
       <article className='item-card'>
         <div className='item-card-cost'>
-          Cost: {cost} {currency}
+          Cost: <br></br> {cost} {currency}
         </div>
         <h3 className='item-card-title'>{name}</h3>
         <button className='add-item-button'>
