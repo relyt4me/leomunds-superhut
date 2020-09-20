@@ -65,7 +65,7 @@ class App extends Component {
             path='/cart'
             render={() => {
               // this.changePageTitle('Cart Checkout');
-              return <Cart />;
+              return <Cart cartItems={this.state.cartItems} />;
             }}
           />
         </Switch>

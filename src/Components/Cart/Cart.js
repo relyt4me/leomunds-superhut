@@ -7,7 +7,7 @@ class Cart extends Component {
     super(props);
     this.state = {
       totalCost: 0,
-      modifyInput: 0,
+      priceModify: 0,
     };
   }
 
@@ -26,7 +26,7 @@ class Cart extends Component {
     });
   }
 
-  addAllCosts() {
+  addAllCosts = () => {
     return this.props.cartItems.reduce((totalCost, item) => {
       let convertedCost;
       if (item.currency === 'gp') {
@@ -38,25 +38,25 @@ class Cart extends Component {
       }
       return (totalCost += convertedCost);
     }, 0);
-  }
+  };
 
-  convertCostToCurrency(cost) {
+  convertCostToCurrency = (cost) => {
     const brokenCost = Math.round(cost).toString().split('');
-    do {
+    while (brokenCost.length < 4) {
       brokenCost.unshift('0');
-    } while (brokenCost.length < 4);
-    const gold = brokenCost.slice(0, brokenCost.length() - 2);
-    const silver = brokenCost[brokenCost.length() - 2];
-    const copper = brokenCost[brokenCost.length() - 1];
-    return `${gold} gp, ${silver} sp, ${copper}, cp`;
-  }
+    }
+    const gold = brokenCost.slice(0, brokenCost.length - 2).join('');
+    const silver = brokenCost[brokenCost.length - 2];
+    const copper = brokenCost[brokenCost.length - 1];
+    return `${gold} gp, ${silver} sp, ${copper} cp`;
+  };
 
-  updatePriceModifyInput(event) {
-    this.setState({ modifyInput: event.target.value });
-  }
+  updatePriceModifyInput = (event) => {
+    this.setState({ priceModify: event.target.value });
+  };
 
   render() {
-    const { totalCost, modifyInput } = this.state;
+    const { totalCost, priceModify } = this.state;
     return (
       <section className='cart-page'>
         <article className='cart-list'>
@@ -71,14 +71,12 @@ class Cart extends Component {
           <h3 className='cart-list-total-items'>{this.props.cartItems.length} items in your cart</h3>
         </article>
         <article className='cart-value-card'>
-          <h2 className='cart-total-value'>
-            {goldTotal} gold, {silverTotal} silver, {copperTotal} copper
-          </h2>
+          <h2 className='cart-total-value'>{this.convertCostToCurrency(totalCost)} this</h2>
           <label htmlFor='price-modify' className='price-modify-label'>
-            Price Modify: {modifyInput * 100} %
+            Price Modify: {priceModify * 100} %
           </label>
-          <input type='range' id='price-modify' name='price-modify' min='-1' max='1' step='0.1' onChange={this.updatePriceModifyInput}></input>
-          <h3 className='modified-total'>{() => this.convertCostToCurrency(totalCost - totalCost * modifyInput)}</h3>
+          <input type='range' id='price-modify' name='price-modify' min='-1' max='1' step='0.1' onChange={this.updatePriceModifyInput} value={priceModify}></input>
+          <h3 className='modified-total'>{this.convertCostToCurrency(totalCost + totalCost * priceModify)} here</h3>
         </article>
       </section>
     );
