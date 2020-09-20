@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 import './ItemCard.css';
 import propTypes from 'prop-types';
 import handIcon from '../../assets/telekinesis.png';
+import { getItem } from '../../helpers/apiCalls';
 
 class ItemCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currency: '',
+      currency: 'Gold',
       cost: 0,
-      name: '',
+      name: 'New Item',
       index: '',
     };
+  }
+
+  componentDidMount() {
+    getItem(this.props.item.index)
+      .then((item) => {
+        this.setState({ currency: item.cost.unit, cost: item.cost.quantity, name: item.name, index: item.index });
+      })
+      .catch((error) => this.props.setError('One of the items must have become possessed come back once we have dispelled this curse'));
   }
 
   render() {
