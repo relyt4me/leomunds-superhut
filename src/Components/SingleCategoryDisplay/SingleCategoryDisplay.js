@@ -14,7 +14,7 @@ class SingleCategoryDisplay extends Component {
 
   createCards() {
     return this.state.itemsInCategory.map((item) => {
-      return <ItemCard item={item} />;
+      return <ItemCard item={item} setError={this.props.setError} />;
     });
   }
 
