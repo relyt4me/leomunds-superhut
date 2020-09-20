@@ -6,9 +6,7 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      goldTotal: 0,
-      silverTotal: 0,
-      copperTotal: 0,
+      totalCost: 0,
       modifyInput: 0,
     };
   }
@@ -26,6 +24,20 @@ class Cart extends Component {
         </li>
       );
     });
+  }
+
+  addAllCosts() {
+    return this.props.cartItems.reduce((totalCost, item) => {
+      let convertedCost;
+      if (item.currency === 'gp') {
+        convertedCost = item.cost * 100;
+      } else if (item.currency === 'sp') {
+        convertedCost = item.cost * 10;
+      } else if (item.currency === 'sp') {
+        convertedCost = item.cost;
+      }
+      return (totalCost += convertedCost);
+    }, 0);
   }
 
   render() {
