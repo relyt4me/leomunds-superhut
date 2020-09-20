@@ -1,6 +1,6 @@
 import React from 'react';
 import ErrorPage from './ErrorPage';
-import { screen, render } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 
@@ -22,6 +22,18 @@ describe('ErrorPage Component', () => {
   });
 
   it('Should fire the setError function when returning to home', () => {
-    mockSetError;
+    const mockSetError = jest.fn();
+
+    render(
+      <MemoryRouter>
+        <ErrorPage error={'This is an Error Message'} setError={mockSetError} />
+      </MemoryRouter>
+    );
+
+    const returnHomeButton = screen.getByRole('button', { name: 'Return Home' });
+    fireEvent.click(returnHomeButton);
+
+    expect(mockSetError).toBeCalledTimes(1);
+    expect(mockSetError).toBeCalledWith('');
   });
 });
