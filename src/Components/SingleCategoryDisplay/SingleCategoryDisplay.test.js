@@ -99,18 +99,18 @@ describe('SingleCategoryDisplay Component', () => {
     expect(loadingMessage).toBeInTheDocument();
   });
 
-  // it('Should call setError on a bad fetch call', async () => {
-  //   getCategories.mockResolvedValueOnce(null);
-  //   const mockSetError = jest.fn();
-  //   mockSetError.mockResolvedValueOnce('bingo');
+  it('Should call setError on a bad fetch call', async () => {
+    getItemsInCategory.mockResolvedValueOnce(null);
+    const mockSetError = jest.fn();
+    mockSetError.mockResolvedValueOnce('bingo');
 
-  //   render(
-  //     <MemoryRouter>
-  //       <SingleCategoryDisplay setError={mockSetError} />
-  //     </MemoryRouter>
-  //   );
+    render(
+      <MemoryRouter>
+        <SingleCategoryDisplay setError={mockSetError} />
+      </MemoryRouter>
+    );
 
-  //   await waitFor(() => expect(mockSetError).toBeCalledTimes(1));
-  //   expect(mockSetError).toBeCalledWith('Vecna has attacked out stores!! Please come back after an adventurer cleans this up.');
-  // });
+    await waitFor(() => expect(mockSetError).toBeCalledTimes(1));
+    expect(mockSetError).toBeCalledWith('Bandits have blocked this trade route. Ill get my best sellswords on it');
+  });
 });
