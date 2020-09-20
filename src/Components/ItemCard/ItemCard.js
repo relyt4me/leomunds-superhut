@@ -27,9 +27,9 @@ class ItemCard extends Component {
     const { currency, cost, name } = this.state;
     return (
       <article className='item-card'>
-        <div className='item-card-cost'>
+        <p className='item-card-cost'>
           Cost: <br></br> {cost} {currency}
-        </div>
+        </p>
         <h3 className='item-card-title'>{name}</h3>
         <button className='add-item-button'>
           Add to Cart
