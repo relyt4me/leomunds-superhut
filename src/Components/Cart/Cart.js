@@ -51,8 +51,12 @@ class Cart extends Component {
     return `${gold} gp, ${silver} sp, ${copper}, cp`;
   }
 
+  updatePriceModifyInput(event) {
+    this.setState({ modifyInput: event.target.value });
+  }
+
   render() {
-    const { goldTotal, silverTotal, copperTotal } = this.state;
+    const { totalCost, modifyInput } = this.state;
     return (
       <section className='cart-page'>
         <article className='cart-list'>
@@ -71,10 +75,10 @@ class Cart extends Component {
             {goldTotal} gold, {silverTotal} silver, {copperTotal} copper
           </h2>
           <label htmlFor='price-modify' className='price-modify-label'>
-            Price Modify: {this.state.modifyInput * 10} %
+            Price Modify: {modifyInput * 100} %
           </label>
-          <input type='range' id='price-modify' name='price-modify' min='-10' max='10' onChange={this.updatePriceModifyInput}></input>
-          <h3 className='modified-total'> gold silver copper</h3>
+          <input type='range' id='price-modify' name='price-modify' min='-1' max='1' step='0.1' onChange={this.updatePriceModifyInput}></input>
+          <h3 className='modified-total'>{() => this.convertCostToCurrency(totalCost - totalCost * modifyInput)}</h3>
         </article>
       </section>
     );
