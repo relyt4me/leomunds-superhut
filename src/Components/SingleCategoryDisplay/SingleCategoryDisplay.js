@@ -31,7 +31,7 @@ class SingleCategoryDisplay extends Component {
   render() {
     const isLoading = !this.state.itemsInCategory.length;
     return (
-      <section className='categories-display'>
+      <section className='items-display'>
         {isLoading && <h1>Loading...</h1>}
         {!isLoading && this.createCards()}
       </section>
