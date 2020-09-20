@@ -16,9 +16,8 @@ class CategoriesDisplay extends Component {
   createCards() {
     return this.state.categories.map((category) => {
       return (
-        <Link to={`/${category.index}`}>
+        <Link to={`/${category.index}/items`} className='card-holder'>
           <CategoryCard name={category.name} />
-          {/* <h1>{category.name}</h1> */}
         </Link>
       );
     });
@@ -33,11 +32,13 @@ class CategoriesDisplay extends Component {
   }
 
   render() {
-    if (this.state.categories.length) {
-      return <section className='categories-display'>{this.createCards()}</section>;
-    } else {
-      return <h1>Loading.....</h1>;
-    }
+    const isLoading = !this.state.categories.length;
+    return (
+      <section className='categories-display'>
+        {isLoading && <h1>Loading...</h1>}
+        {!isLoading && this.createCards()}
+      </section>
+    );
   }
 }
 
