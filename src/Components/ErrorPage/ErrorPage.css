@@ -9,6 +9,16 @@
   font-size: 1.5em;
 }
 
+.critical-fail-icon {
+  height: 16vh;
+  position: absolute;
+  top: 50%;
+  margin-top: -8vh;
+  left: 50%;
+  margin-left: -8vh;
+  border-radius: 50%;
+}
+
 .return-home-button {
   font-family: Medival;
   font-size: 1.2em;
