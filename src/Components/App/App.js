@@ -44,7 +44,7 @@ class App extends Component {
             path='/storefront'
             render={() => {
               // this.changePageTitle("Leomund's Superhut");
-              return <CategoriesDisplay />;
+              return <CategoriesDisplay setError={this.setError} />;
             }}
           />
           <Route

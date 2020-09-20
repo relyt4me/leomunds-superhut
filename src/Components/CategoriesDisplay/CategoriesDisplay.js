@@ -16,7 +16,7 @@ class CategoriesDisplay extends Component {
   createCards() {
     return this.state.categories.map((category) => {
       return (
-        <Link to={`/${category.index}/items`} className='card-holder'>
+        <Link to={`/${category.index}/items`} className='card-holder' key={category.index}>
           <CategoryCard name={category.name} />
         </Link>
       );
@@ -28,7 +28,9 @@ class CategoriesDisplay extends Component {
       .then((results) => {
         this.setState({ categories: results });
       })
-      .catch((error) => this.props.setError('Vecna has attacked out stores!! Please come back after an adventurer cleans this up.'));
+      .catch((error) => {
+        this.props.setError('Vecna has attacked out stores!! Please come back after an adventurer cleans this up.');
+      });
   }
 
   render() {
