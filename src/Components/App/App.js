@@ -58,7 +58,7 @@ class App extends Component {
             path='/:category/items'
             render={({ match }) => {
               // this.changePageTitle(match.params.category);
-              return <SingleCategoryDisplay />;
+              return <SingleCategoryDisplay setError={this.setError} categoryId={match.params.category} />;
             }}
           />
           <Route
