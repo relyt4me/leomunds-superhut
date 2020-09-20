@@ -11,7 +11,7 @@ class Cart extends Component {
     };
   }
 
-  createCartList() {
+  createCartList = () => {
     return this.props.cartItems.map((item) => {
       const { name, cost, currency, index } = item;
       return (
@@ -24,7 +24,7 @@ class Cart extends Component {
         </li>
       );
     });
-  }
+  };
 
   addAllCosts = () => {
     return this.props.cartItems.reduce((totalCost, item) => {
@@ -66,7 +66,7 @@ class Cart extends Component {
               <p className='cart-item-cost'>Cost</p>
               <button onClick={this.props.clearCart}>Clear Cart</button>
             </li>
-            {this.createCartList}
+            {this.createCartList()}
           </ul>
           <h3 className='cart-list-total-items'>{this.props.cartItems.length} items in your cart</h3>
         </article>
