@@ -30,7 +30,7 @@ class ItemCard extends Component {
         <div className='item-card-cost'>
           Cost: {cost} {currency}
         </div>
-        <h3 className='category-card-title'>{name}</h3>
+        <h3 className='item-card-title'>{name}</h3>
         <button className='add-item-button'>
           Add to Cart
           <img src={handIcon} className='hand-icon' alt={`Item floating in hand`} />
