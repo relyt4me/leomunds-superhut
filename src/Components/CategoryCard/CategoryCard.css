@@ -1,0 +1,17 @@
+.category-card {
+  border: 1px solid gray;
+  border-radius: 0.8em;
+  box-shadow: 0 0 1.2em black;
+  background-color: white;
+  padding: 2vh;
+  height: 20vh;
+  width: 20vh;
+}
+
+.category-card:hover {
+  box-shadow: 0 0 1.2em #670906;
+}
+
+.shelf-icon {
+  height: 4vh;
+}
