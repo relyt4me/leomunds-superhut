@@ -1,0 +1,31 @@
+.item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 27vw;
+  background-color: #333333;
+  border-radius: 1.2em;
+  padding: 1vh 1.5vw 1vh 1.5vw;
+  border: 1px solid gray;
+  box-shadow: 0 0 1.2em white;
+  color: white;
+  height: 9vh;
+  text-align: center;
+}
+
+.add-item-button {
+  font-family: Indie;
+  display: flex;
+  width: 8vw;
+  padding: 1em;
+  border-radius: 3em;
+  justify-content: space-around;
+}
+
+.add-item-button:hover {
+  box-shadow: 0 0 1em #86100e;
+}
+
+.hand-icon {
+  height: 4vh;
+}
