@@ -51,7 +51,7 @@ class App extends Component {
             path='/error'
             render={() => {
               // this.changePageTitle("Leomund's Broken Superhut");
-              return <ErrorPage />;
+              return <ErrorPage error={this.state.error} setError={this.setError} />;
             }}
           />
           <Route
