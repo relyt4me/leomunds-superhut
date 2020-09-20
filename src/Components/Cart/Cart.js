@@ -40,6 +40,17 @@ class Cart extends Component {
     }, 0);
   }
 
+  convertCostToCurrency(cost) {
+    const brokenCost = Math.round(cost).toString().split('');
+    do {
+      brokenCost.unshift('0');
+    } while (brokenCost.length < 4);
+    const gold = brokenCost.slice(0, brokenCost.length() - 2);
+    const silver = brokenCost[brokenCost.length() - 2];
+    const copper = brokenCost[brokenCost.length() - 1];
+    return `${gold} gp, ${silver} sp, ${copper}, cp`;
+  }
+
   render() {
     const { goldTotal, silverTotal, copperTotal } = this.state;
     return (
