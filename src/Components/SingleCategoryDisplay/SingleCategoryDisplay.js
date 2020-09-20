@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './SingleCategoryDisplay.css';
-import { getCategories } from '../../helpers/apiCalls';
+import { getItemsInCategory } from '../../helpers/apiCalls';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import ItemCard from '../ItemCard/ItemCard;
+import ItemCard from '../ItemCard/ItemCard';
 
 class SingleCategoryDisplay extends Component {
   constructor(props) {
@@ -15,24 +14,22 @@ class SingleCategoryDisplay extends Component {
 
   createCards() {
     return this.state.itemsInCategory.map((item) => {
-      return (
-          <ItemCard item={item} />
-      );
+      return <ItemCard item={item} />;
     });
   }
 
   componentDidMount() {
-    getCategories()
+    getItemsInCategory(this.props.categoryId)
       .then((results) => {
-        this.setState({ categories: results });
+        this.setState({ itemsInCategory: results });
       })
       .catch((error) => {
-        this.props.setError('Vecna has attacked out stores!! Please come back after an adventurer cleans this up.');
+        this.props.setError('Bandits have blocked this trade route. Ill get my best sellswords on it');
       });
   }
 
   render() {
-    const isLoading = !this.state.categories.length;
+    const isLoading = !this.state.itemsInCategory.length;
     return (
       <section className='categories-display'>
         {isLoading && <h1>Loading...</h1>}
@@ -46,5 +43,5 @@ export default SingleCategoryDisplay;
 
 SingleCategoryDisplay.propTypes = {
   setError: PropTypes.func,
+  categoryId: PropTypes.string,
 };
-
