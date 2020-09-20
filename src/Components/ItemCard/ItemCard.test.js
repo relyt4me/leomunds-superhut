@@ -37,36 +37,34 @@ describe('ItemCard Component', () => {
     expect(buttonImage).toBeInTheDocument();
   });
 
-  // it('Should show a Loading message until the data comes in', () => {
-  //   const mockItemsInCategory = [
-  //     {
-  //       index: 'arrow',
-  //       name: 'Arrow',
-  //     },
-  //   ];
+  it('Should show a stand in card while the fetch calls', () => {
+    const mockArrow = {
+      index: 'arrow',
+      name: 'Arrow',
+      cost: {
+        quantity: 10,
+        unit: 'gp',
+      },
+    };
 
-  //   getItemsInCategory.mockResolvedValueOnce(mockItemsInCategory);
+    getItem.mockResolvedValueOnce(mockArrow);
+    const mockItem = { index: 'arrow' };
+    render(
+      <MemoryRouter>
+        <ItemCard item={mockItem} />
+      </MemoryRouter>
+    );
 
-  //   const mockArrow = {
-  //     index: 'arrow',
-  //     name: 'Arrow',
-  //     cost: {
-  //       quantity: 10,
-  //       unit: 'gp',
-  //     },
-  //   };
+    const cost = screen.getByText('Cost: 0 Gold');
+    const title = screen.getByRole('heading', { name: 'New Item' });
+    const button = screen.getByRole('button', { name: 'Add to Cart Item floating in hand' });
+    const buttonImage = screen.getByAltText('Item floating in hand');
 
-  //   getItem.mockResolvedValueOnce(mockArrow);
-  //   render(
-  //     <MemoryRouter>
-  //       <ItemCard />
-  //     </MemoryRouter>
-  //   );
-
-  //   const loadingMessage = screen.getByRole('heading', { name: 'Loading...' });
-
-  //   expect(loadingMessage).toBeInTheDocument();
-  // });
+    expect(cost).toBeInTheDocument();
+    expect(title).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
+    expect(buttonImage).toBeInTheDocument();
+  });
 
   // it('Should call setError on a bad fetch call', async () => {
   //   getItemsInCategory.mockResolvedValueOnce(null);
