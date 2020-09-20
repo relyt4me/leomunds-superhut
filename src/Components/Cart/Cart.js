@@ -11,6 +11,15 @@ class Cart extends Component {
     };
   }
 
+  componentDidMount() {
+    this.addAllCosts();
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.cartItems.length !== prevProps.cartItems.length) {
+      this.addAllCosts();
+    }
+  }
+
   createCartList = () => {
     return this.props.cartItems.map((item) => {
       const { name, cost, currency, index } = item;
@@ -27,17 +36,20 @@ class Cart extends Component {
   };
 
   addAllCosts = () => {
-    return this.props.cartItems.reduce((totalCost, item) => {
+    const total = this.props.cartItems.reduce((totalCost, item) => {
       let convertedCost;
       if (item.currency === 'gp') {
         convertedCost = item.cost * 100;
       } else if (item.currency === 'sp') {
         convertedCost = item.cost * 10;
-      } else if (item.currency === 'sp') {
+      } else if (item.currency === 'cp') {
         convertedCost = item.cost;
       }
+
       return (totalCost += convertedCost);
     }, 0);
+
+    this.setState({ totalCost: total });
   };
 
   convertCostToCurrency = (cost) => {
@@ -71,12 +83,12 @@ class Cart extends Component {
           <h3 className='cart-list-total-items'>{this.props.cartItems.length} items in your cart</h3>
         </article>
         <article className='cart-value-card'>
-          <h2 className='cart-total-value'>{this.convertCostToCurrency(totalCost)} this</h2>
+          <h2 className='cart-total-value'>{this.convertCostToCurrency(totalCost)}</h2>
           <label htmlFor='price-modify' className='price-modify-label'>
             Price Modify: {priceModify * 100} %
           </label>
           <input type='range' id='price-modify' name='price-modify' min='-1' max='1' step='0.1' onChange={this.updatePriceModifyInput} value={priceModify}></input>
-          <h3 className='modified-total'>{this.convertCostToCurrency(totalCost + totalCost * priceModify)} here</h3>
+          <h3 className='modified-total'>{this.convertCostToCurrency(totalCost + totalCost * priceModify)}</h3>
         </article>
       </section>
     );
