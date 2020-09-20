@@ -4,7 +4,14 @@
   background-color: #959595;
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-holder {
+  display: flex;
+  justify-content: center;
 }
