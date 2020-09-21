@@ -37,7 +37,7 @@
   text-align: center;
 }
 
-.item-card {
+.found-item-wrapper {
   grid-area: 2/1/3/4;
   justify-self: center;
 }
