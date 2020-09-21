@@ -94,6 +94,11 @@ class App extends Component {
               return <Cart cartItems={this.state.cartItems} clearCart={this.clearCart} removeItem={this.removeItem} changePageTitle={this.changePageTitle} />;
             }}
           />
+          <Route
+            render={() => {
+              return <ErrorPage error={this.state.error} setError={this.setError} />;
+            }}
+          />
         </Switch>
         {error && <Redirect to='/error' />}
       </div>

@@ -20,9 +20,11 @@ class CategoriesDisplay extends Component {
   createCards() {
     return this.state.categories.map((category) => {
       return (
-        <Link to={`/${category.index}/items`} className='card-holder' key={category.index}>
-          <CategoryCard name={category.name} />
-        </Link>
+        <div className='card-holder' key={category.index}>
+          <Link to={`/${category.index}/items`} className='card-link'>
+            <CategoryCard name={category.name} />
+          </Link>
+        </div>
       );
     });
   }
@@ -61,7 +63,7 @@ class CategoriesDisplay extends Component {
         {!isLoading && (
           <form className='search-bar'>
             <label htmlFor='search' className='search-label'>
-              Enter an item name you would find in the players handbook:
+              Enter an item's complete name you would find in the player's handbook:
             </label>
             <input type='text' id='search' className='search-input' onChange={this.updateSearch} value={searchPhrase}></input>
             <button className='search-button' aria-label='Find' onClick={this.searchForItem}>
@@ -69,7 +71,7 @@ class CategoriesDisplay extends Component {
             </button>
           </form>
         )}
-        {badSearch && <h3 className='search-error'>We could not find that item in our stores check the spelling or try a different search</h3>}
+        {badSearch && <h3 className='search-error'>We could not find that item in our stores. Check the spelling or try a different search</h3>}
         {foundSearchItem.index && (
           <div className='found-item-wrapper'>
             <ItemCard item={foundSearchItem} setError={this.props.setError} addItemToCart={this.props.addItemToCart} />
