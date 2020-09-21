@@ -13,32 +13,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      cartItems: [
-        {
-          currency: 'gp',
-          cost: 3,
-          name: 'Item1',
-          index: 'item1',
-        },
-        {
-          currency: 'sp',
-          cost: 8,
-          name: 'Item 2',
-          index: 'item2',
-        },
-        {
-          currency: 'cp',
-          cost: 1,
-          name: 'Item 3',
-          index: 'item3',
-        },
-        {
-          currency: 'gp',
-          cost: 2000,
-          name: 'Item 4',
-          index: 'item4',
-        },
-      ],
+      cartItems: [],
       error: '',
       pageTitle: "Leomund's Superhut",
     };
