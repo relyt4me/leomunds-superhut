@@ -11,10 +11,11 @@ describe('Cart Component', () => {
       { currency: 'cp', cost: 3, name: 'Crossbow bolt', index: 'crossbow-bolt' },
       { currency: 'gp', cost: 400, name: 'Breastplate', index: 'breastplate' },
     ];
+    const mockChangePageTitle = jest.fn();
 
     render(
       <MemoryRouter>
-        <Cart cartItems={mockCart} />
+        <Cart cartItems={mockCart} changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
@@ -47,10 +48,11 @@ describe('Cart Component', () => {
 
   it('Should modify the price as the slider changes', () => {
     const mockCart = [{ currency: 'gp', cost: 100, name: 'Breastplate', index: 'breastplate' }];
+    const mockChangePageTitle = jest.fn();
 
     render(
       <MemoryRouter>
-        <Cart cartItems={mockCart} />
+        <Cart cartItems={mockCart} changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
@@ -67,10 +69,11 @@ describe('Cart Component', () => {
 
   it('Should call clearCart when the clear button is clicked', () => {
     const mockClearCart = jest.fn();
+    const mockChangePageTitle = jest.fn();
 
     render(
       <MemoryRouter>
-        <Cart clearCart={mockClearCart} cartItems={[]} />
+        <Cart clearCart={mockClearCart} cartItems={[]} changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
@@ -84,10 +87,11 @@ describe('Cart Component', () => {
   it('Should call removeItem when the remove is clicked', () => {
     const mockCart = [{ currency: 'gp', cost: 100, name: 'Breastplate', index: 'breastplate' }];
     const mockRemoveItem = jest.fn();
+    const mockChangePageTitle = jest.fn();
 
     render(
       <MemoryRouter>
-        <Cart cartItems={mockCart} removeItem={mockRemoveItem} />
+        <Cart cartItems={mockCart} removeItem={mockRemoveItem} changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
@@ -97,5 +101,19 @@ describe('Cart Component', () => {
 
     expect(mockRemoveItem).toBeCalledTimes(1);
     expect(mockRemoveItem).toBeCalledWith('breastplate');
+  });
+
+  it('Should call changePageTitle on load', () => {
+    const mockCart = [];
+    const mockChangePageTitle = jest.fn();
+
+    render(
+      <MemoryRouter>
+        <Cart cartItems={mockCart} changePageTitle={mockChangePageTitle} />
+      </MemoryRouter>
+    );
+
+    expect(mockChangePageTitle).toBeCalledTimes(1);
+    expect(mockChangePageTitle).toBeCalledWith('Cart Checkout');
   });
 });

@@ -25,11 +25,12 @@ describe('CategoriesDisplay Component', () => {
         url: '/api/equipment-categories/arcane-foci',
       },
     ];
+    const mockChangePageTitle = jest.fn();
 
     getCategories.mockResolvedValueOnce(mockCategories);
     render(
       <MemoryRouter>
-        <CategoriesDisplay />
+        <CategoriesDisplay changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
@@ -60,11 +61,12 @@ describe('CategoriesDisplay Component', () => {
         url: '/api/equipment-categories/arcane-foci',
       },
     ];
+    const mockChangePageTitle = jest.fn();
 
     getCategories.mockResolvedValueOnce(mockCategories);
     render(
       <MemoryRouter>
-        <CategoriesDisplay />
+        <CategoriesDisplay changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
@@ -77,14 +79,29 @@ describe('CategoriesDisplay Component', () => {
     getCategories.mockResolvedValueOnce(null);
     const mockSetError = jest.fn();
     mockSetError.mockResolvedValueOnce('bingo');
+    const mockChangePageTitle = jest.fn();
 
     render(
       <MemoryRouter>
-        <CategoriesDisplay setError={mockSetError} />
+        <CategoriesDisplay setError={mockSetError} changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
     await waitFor(() => expect(mockSetError).toBeCalledTimes(1));
     expect(mockSetError).toBeCalledWith('Vecna has attacked out stores!! Please come back after an adventurer cleans this up.');
+  });
+
+  it('Should call changePageTitle on load', () => {
+    const mockChangePageTitle = jest.fn();
+    getCategories.mockResolvedValueOnce([]);
+
+    render(
+      <MemoryRouter>
+        <CategoriesDisplay changePageTitle={mockChangePageTitle} />
+      </MemoryRouter>
+    );
+
+    expect(mockChangePageTitle).toBeCalledTimes(1);
+    expect(mockChangePageTitle).toBeCalledWith("Leomund's Superhut");
   });
 });
