@@ -1,15 +1,15 @@
-# Fridge to Glass
+# Leomund's Superhut
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-![logo](logo.url)
+![Leomund's Logo with a d20 dice](./src/assets/favicon.ico)
 
 ## Table of Contents
 
-- [Brief Description](#brief-description)
+- [Overview](#overview)
 - [How to use](#how-to-use)
 - [Installation](#installation)
 - [Functionality](#functionality)
@@ -18,20 +18,22 @@
 
 <!-- Brief Description -->
 
-## Brief Description
+## Overview
 
-We have created an app that allows a user to search for both alcoholic and non-alcoholic drink recipes that use an ingredient the user provides in the search. We wanted to create an app that helps people to see all of the drink options they have, often with ingredients they already have in their homes.
+Leomund's Superhut is an application built to assist Dungeon Masters in the game of Dungeons and Dragons. During players in game shopping adventures, one would normally have to flip through the many pages of the player's handbook to search for items that are requested jot down the prices of these items and then do math at the end when the players finally decide on what they want. With Leomund's Superhut that is all streamlined allowing a Dungeon Master to easily calculate shopping totals and even add cost or provide discounts.
+
+This is a project for Turing school to utilize our knowledge on a variety of front end tools and get to display our knowledge of React applications, testing and api interactions. It was originally built in the span of a long weekend.
 
 ## How to use
 
-User puts an ingredient they want to make a drink with in the search bar. They then choose the type of drinks they want (alcoholic, non-alcoholic, or both) and click 'Find Drinks' to get all the drinks that match their search. Users can click on the drink cards to get the full recipe.
-
-Users can also click on the 'Random Drink' button to immediately see a recipe for a random drink.
+* On load the application will welcome the Dungeom Master(DM) and assist with some basic instructions. 
+* At the storefront a DM can browse the categories of items and add the items they find interesting. Alternatively, they can use the search function to type in the name of a known item and add it to the cart. Each item has its title and cost displayed.
+* A DM can then go to their cart and view their shopping list which can be eddited or cleared at this screen.
+* A DM can also use the price modify slider to give a precentage discount or add an additional tax based on the players interactions with the storekeep.
 
 ## Built With
 
 - React 16
-- Redux 4
 - CSS
 
 ## Installation
@@ -50,29 +52,25 @@ https://github.com/relyt4me/leomunds-superhut
 
 ### How to see the product
 
-In terminal, go to the project directory and run 'npm start' to open the project in the browser. Have fun finding a drink to try!
-
-### Live version
-
-[Deployed Site](https://fridge-to-glass.herokuapp.com/)
+In terminal, go to the project directory and run 'npm start' to open the project in the browser.
 
 ## Functionality
 
-### Searching for an ingredient to get a list and selecting one for the recipe
+### Adding an item to the cart by browsing categories
 
-![main app functionality](src/assets/main-functionality.gif)
+![User going to the storefront page selecting a category and adding an item within the category by clicking add item](/readme-assets/add-item-by-browsing.gif)
 
-### Random Drink Search
+### Adding an item by searching
 
-![random drink functionality](src/assets/random-drink.gif)
+![Usering entering a search term, yew wand, to the search area at the storefront, displaying the item and adding it by clicking add item](/readme-assets/add-item-by-search.gif)
 
-### Error handling for no drinks in that filter
+### Modifying the price of the items at the Cart page
 
-![no recipes found error](src/assets/filter-no-recipes.gif)
+![User entering the Cart page to see a list of the items they have in the cart and a displayed total value. They then slide the selector to adjust the percentage and see a resulting change in the cost](/readme-assets/modify-price.gif)
 
-### Error handing for an ingredient not found in any drinks
+### Editing and Clearing a Cart
 
-![ingredient not found with search](src/assets/ingredient-not-found.gif)
+![User in the cart page scrolling through and removing items by clicking their remove button, They then clear the full cart with the clear button](/readme-assets/remove-items.gif)
 
 ## Contributing
 
@@ -101,9 +99,11 @@ See the [open issues](https://github.com/relyt4me/leomunds-superhut/issues) for 
 
 [Original Project Link](https://frontend.turing.io/projects/module-3/binary-challenge.html)
 
-[Jarrett Kong](https://github.com/jarrettkong) for reviewing code and ...........
+[Jarrett Kong](https://github.com/jarrettkong) for reviewing code and assisting in trouble with routing.
 
 [D&D 5e API](http://www.dnd5eapi.co/) API used for the item information.
+
+Icons for item cards and categories by [Freepik](https://www.flaticon.com/authors/freepik)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
