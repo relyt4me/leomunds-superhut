@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ItemCard.css';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import handIcon from '../../assets/telekinesis.png';
 import { getItem } from '../../helpers/apiCalls';
 
@@ -23,6 +23,11 @@ class ItemCard extends Component {
       .catch((error) => this.props.setError('One of the items must have become possessed come back once we have dispelled this curse'));
   }
 
+  createAndAddItem = () => {
+    const item = this.state;
+    this.props.addItemToCart(item);
+  };
+
   render() {
     const { currency, cost, name } = this.state;
     return (
@@ -31,7 +36,7 @@ class ItemCard extends Component {
           Cost: <br></br> {cost} {currency}
         </p>
         <h3 className='item-card-title'>{name}</h3>
-        <button className='add-item-button'>
+        <button className='add-item-button' onClick={this.createAndAddItem}>
           Add to Cart
           <img src={handIcon} className='hand-icon' alt={`Item floating in hand`} />
         </button>
@@ -41,7 +46,8 @@ class ItemCard extends Component {
 }
 
 ItemCard.propTypes = {
-  item: propTypes.object,
+  item: PropTypes.object,
+  addItemToCart: PropTypes.func,
 };
 
 export default ItemCard;
