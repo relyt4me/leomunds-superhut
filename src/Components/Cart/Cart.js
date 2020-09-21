@@ -76,12 +76,20 @@ class Cart extends Component {
           <h3 className='cart-list-total-items'>{this.props.cartItems.length} items in your cart</h3>
         </article>
         <article className='cart-value-card'>
-          <h2 className='cart-total-value'>Cart Total: {this.convertCostToCurrency(totalCost)}</h2>
+          <h2 className='cart-total-value'>
+            <span className='cart-titles'>Total Cost: </span>
+            <br></br>
+            {this.convertCostToCurrency(totalCost)}
+          </h2>
           <label htmlFor='price-modify' className='price-modify-label'>
             Price Modify: {priceModify * 100} %
           </label>
           <input type='range' id='price-modify' name='price-modify' min='-1' max='1' step='0.1' onChange={this.updatePriceModifyInput} value={priceModify}></input>
-          <h3 className='modified-total'>Modified Total: {this.convertCostToCurrency(totalCost + totalCost * priceModify)}</h3>
+          <h3 className='modified-total'>
+            <span className='cart-titles'>Modified Total: </span>
+            <br></br>
+            {this.convertCostToCurrency(totalCost + totalCost * priceModify)}
+          </h3>
         </article>
       </section>
     );

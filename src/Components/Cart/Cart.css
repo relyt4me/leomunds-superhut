@@ -38,7 +38,6 @@
 
 .cart-item {
   display: flex;
-  /* justify-content: space-between; */
   text-align: left;
   padding: 0.5vh 2vw;
   box-shadow: 0 0.05em 0.04em #333333;
@@ -66,4 +65,13 @@
 .cart-value-card {
   background-color: #e7e7db;
   grid-area: 2/3/3/4;
+  display: grid;
+  box-shadow: 0 0 0.4em #333333;
+  border-radius: 5%;
+  padding: 2vh;
+  font-family: Indie;
+}
+
+.cart-titles {
+  font-family: Medival;
 }
