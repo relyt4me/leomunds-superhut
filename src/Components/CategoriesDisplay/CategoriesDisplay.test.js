@@ -51,7 +51,13 @@ describe('CategoriesDisplay Component', () => {
 
   it('Should show the update as the search is filled out', async () => {
     const mockChangePageTitle = jest.fn();
-    getCategories.mockResolvedValueOnce([]);
+    getCategories.mockResolvedValueOnce([
+      {
+        index: 'adventuring-gear',
+        name: 'Adventuring Gear',
+        url: '/api/equipment-categories/adventuring-gear',
+      },
+    ]);
 
     render(
       <MemoryRouter>
@@ -66,38 +72,37 @@ describe('CategoriesDisplay Component', () => {
     expect(searchInput.value).toBe('Arrow');
   });
 
-  // it('Should show the error when a bad search is made', async () => {
-  //   // const mockArrow = {
-  //   //   index: 'arrow',
-  //   //   name: 'Arrow',
-  //   //   cost: {
-  //   //     quantity: 10,
-  //   //     unit: 'gp',
-  //   //   },
-  //   // };
-  //   // getItem.mockResolvedValue(mockArrow);
-  //   getItem.mockResolvedValue(null);
-  //   const mockChangePageTitle = jest.fn();
-  //   getCategories.mockResolvedValueOnce([]);
-
-  //   render(
-  //     <MemoryRouter>
-  //       <CategoriesDisplay changePageTitle={mockChangePageTitle} />
-  //     </MemoryRouter>
-  //   );
-
-  //   const searchInput = await waitFor(() => screen.getByRole('textbox'));
-  //   const searchButton = screen.getByRole('button', { name: 'Find' });
-
-  //   fireEvent.change(searchInput, { target: { value: 'not an item' } });
-  //   fireEvent.click(searchButton);
-
-  //   const errorMessage = await waitFor(() => screen.getByRole('heading', { name: 'We could not find that item in our stores check the spelling or try a different search' }));
-
-  //   expect(errorMessage).toBeInTheDocument();
-  // });
-
   it('Should show the error when a bad search is made', async () => {
+    getItem.mockRejectedValue({
+      error: 'Not found',
+    });
+    const mockChangePageTitle = jest.fn();
+    getCategories.mockResolvedValueOnce([
+      {
+        index: 'adventuring-gear',
+        name: 'Adventuring Gear',
+        url: '/api/equipment-categories/adventuring-gear',
+      },
+    ]);
+
+    render(
+      <MemoryRouter>
+        <CategoriesDisplay changePageTitle={mockChangePageTitle} />
+      </MemoryRouter>
+    );
+
+    const searchInput = await waitFor(() => screen.getByRole('textbox'));
+    const searchButton = screen.getByRole('button', { name: 'Find' });
+
+    fireEvent.change(searchInput, { target: { value: 'not an item' } });
+    fireEvent.click(searchButton);
+
+    const errorMessage = await waitFor(() => screen.getByRole('heading', { name: 'We could not find that item in our stores check the spelling or try a different search' }));
+
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  it('Should show the the card when a correct search is made', async () => {
     const mockArrow = {
       index: 'arrow',
       name: 'Arrow',
@@ -108,7 +113,13 @@ describe('CategoriesDisplay Component', () => {
     };
     getItem.mockResolvedValue(mockArrow);
     const mockChangePageTitle = jest.fn();
-    getCategories.mockResolvedValueOnce([]);
+    getCategories.mockResolvedValueOnce([
+      {
+        index: 'adventuring-gear',
+        name: 'Adventuring Gear',
+        url: '/api/equipment-categories/adventuring-gear',
+      },
+    ]);
 
     render(
       <MemoryRouter>
@@ -160,7 +171,7 @@ describe('CategoriesDisplay Component', () => {
   });
 
   it('Should call setError on a bad fetch call', async () => {
-    getCategories.mockResolvedValueOnce(null);
+    getCategories.mockRejectedValueOnce({ error: 'fail' });
     const mockSetError = jest.fn();
     mockSetError.mockResolvedValueOnce('bingo');
     const mockChangePageTitle = jest.fn();
