@@ -34,6 +34,7 @@ class CategoriesDisplay extends Component {
   }
 
   render() {
+    this.props.changePageTitle("Leomund's Superhut");
     const isLoading = !this.state.categories.length;
     return (
       <section className='categories-display'>
@@ -48,4 +49,5 @@ export default CategoriesDisplay;
 
 CategoriesDisplay.propTypes = {
   setError: PropTypes.func,
+  changePageTitle: PropTypes.func,
 };
