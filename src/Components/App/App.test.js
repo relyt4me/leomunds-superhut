@@ -93,7 +93,27 @@ describe('Integration testing', () => {
     fireEvent.click(adventureCard);
 
     const arrowCard = await waitFor(() => screen.getByRole('heading', { name: 'Arrow' }));
+    const newPageTitle = screen.getByRole('heading', { name: 'adventuring-gear' });
 
     expect(arrowCard).toBeInTheDocument();
+    expect(newPageTitle).toBeInTheDocument();
+  });
+
+  it('should allow a user to click on their cart to navigate to the cart page', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const cartButton = await waitFor(() => screen.getByRole('button', { name: 'My Cart Horse pulling a cart 0' }));
+
+    fireEvent.click(cartButton);
+
+    const newPageTitle = screen.getByRole('heading', { name: 'Cart Checkout' });
+    const priceModifyLabel = screen.getByText('Price Modify: 0 %');
+
+    expect(priceModifyLabel).toBeInTheDocument();
+    expect(newPageTitle).toBeInTheDocument();
   });
 });
