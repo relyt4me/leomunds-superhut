@@ -19,7 +19,9 @@ class Cart extends Component {
           <p className='cart-item-cost'>
             {cost} {currency}
           </p>
-          <button onClick={() => this.props.removeItem(index)}>Remove</button>
+          <button className='cart-item-button' onClick={() => this.props.removeItem(index)}>
+            Remove
+          </button>
         </li>
       );
     });
@@ -61,23 +63,33 @@ class Cart extends Component {
     return (
       <section className='cart-page'>
         <article className='cart-list'>
-          <ul>
+          <ul className='cart-list-holder'>
             <li className='cart-item cart-item-header'>
               <h3 className='cart-item-title'>Name</h3>
               <p className='cart-item-cost'>Cost</p>
-              <button onClick={this.props.clearCart}>Clear Cart</button>
+              <button className='clear-cart-button' onClick={this.props.clearCart}>
+                Clear Cart
+              </button>
             </li>
             {this.createCartList()}
           </ul>
           <h3 className='cart-list-total-items'>{this.props.cartItems.length} items in your cart</h3>
         </article>
         <article className='cart-value-card'>
-          <h2 className='cart-total-value'>{this.convertCostToCurrency(totalCost)}</h2>
+          <h2 className='cart-total-value'>
+            <span className='cart-titles'>Total Cost: </span>
+            <br></br>
+            {this.convertCostToCurrency(totalCost)}
+          </h2>
           <label htmlFor='price-modify' className='price-modify-label'>
             Price Modify: {priceModify * 100} %
           </label>
           <input type='range' id='price-modify' name='price-modify' min='-1' max='1' step='0.1' onChange={this.updatePriceModifyInput} value={priceModify}></input>
-          <h3 className='modified-total'>{this.convertCostToCurrency(totalCost + totalCost * priceModify)}</h3>
+          <h3 className='modified-total'>
+            <span className='cart-titles'>Modified Total: </span>
+            <br></br>
+            {this.convertCostToCurrency(totalCost + totalCost * priceModify)}
+          </h3>
         </article>
       </section>
     );
