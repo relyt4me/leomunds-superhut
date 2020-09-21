@@ -6,18 +6,8 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalCost: 0,
       priceModify: 0,
     };
-  }
-
-  componentDidMount() {
-    this.addAllCosts();
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.cartItems.length !== prevProps.cartItems.length) {
-      this.addAllCosts();
-    }
   }
 
   createCartList = () => {
@@ -36,7 +26,7 @@ class Cart extends Component {
   };
 
   addAllCosts = () => {
-    const total = this.props.cartItems.reduce((totalCost, item) => {
+    return this.props.cartItems.reduce((totalCost, item) => {
       let convertedCost;
       if (item.currency === 'gp') {
         convertedCost = item.cost * 100;
@@ -46,10 +36,8 @@ class Cart extends Component {
         convertedCost = item.cost;
       }
 
-      return (totalCost += convertedCost);
+      return totalCost + convertedCost;
     }, 0);
-
-    this.setState({ totalCost: total });
   };
 
   convertCostToCurrency = (cost) => {
@@ -68,7 +56,8 @@ class Cart extends Component {
   };
 
   render() {
-    const { totalCost, priceModify } = this.state;
+    const totalCost = this.addAllCosts();
+    const { priceModify } = this.state;
     return (
       <section className='cart-page'>
         <article className='cart-list'>
