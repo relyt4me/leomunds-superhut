@@ -70,7 +70,7 @@ class App extends Component {
           <Route
             path='/error'
             render={() => {
-              return <ErrorPage error={this.state.error} setError={this.setError} changePageTitle={this.changePageTitle} />;
+              return <ErrorPage error={this.state.error} setError={this.setError} />;
             }}
           />
           <Route
@@ -91,7 +91,6 @@ class App extends Component {
           <Route
             path='/cart'
             render={() => {
-              // this.changePageTitle('Cart Checkout');
               return <Cart cartItems={this.state.cartItems} clearCart={this.clearCart} removeItem={this.removeItem} changePageTitle={this.changePageTitle} />;
             }}
           />
@@ -103,13 +102,3 @@ class App extends Component {
 }
 
 export default App;
-
-/**
- * APP
- *  Header * Search/ Page Title/ Back to Store/ Cart
- *  (Welcome)
- *  (CategoriesDisplay) -Cards
- *  (ErrorPage)
- *  (Cart)
- *  (ItemDisplay)- cards
- */

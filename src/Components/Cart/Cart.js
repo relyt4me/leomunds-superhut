@@ -10,6 +10,10 @@ class Cart extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.changePageTitle('Cart Checkout');
+  }
+
   createCartList = () => {
     return this.props.cartItems.map((item) => {
       const { name, cost, currency, index } = item;
@@ -58,7 +62,6 @@ class Cart extends Component {
   };
 
   render() {
-    this.props.changePageTitle('Cart Checkout');
     const totalCost = this.addAllCosts();
     const { priceModify } = this.state;
     return (

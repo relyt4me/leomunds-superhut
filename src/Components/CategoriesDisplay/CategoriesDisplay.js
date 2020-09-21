@@ -24,6 +24,7 @@ class CategoriesDisplay extends Component {
   }
 
   componentDidMount() {
+    this.props.changePageTitle("Leomund's Superhut");
     getCategories()
       .then((results) => {
         this.setState({ categories: results });
@@ -34,7 +35,6 @@ class CategoriesDisplay extends Component {
   }
 
   render() {
-    this.props.changePageTitle("Leomund's Superhut");
     const isLoading = !this.state.categories.length;
     return (
       <section className='categories-display'>

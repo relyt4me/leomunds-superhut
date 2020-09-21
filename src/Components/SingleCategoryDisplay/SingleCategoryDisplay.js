@@ -19,6 +19,7 @@ class SingleCategoryDisplay extends Component {
   }
 
   componentDidMount() {
+    this.props.changePageTitle();
     getItemsInCategory(this.props.categoryId)
       .then((results) => {
         this.setState({ itemsInCategory: results });
@@ -29,7 +30,6 @@ class SingleCategoryDisplay extends Component {
   }
 
   render() {
-    this.props.changePageTitle();
     const isLoading = !this.state.itemsInCategory.length;
     return (
       <section className='items-display'>

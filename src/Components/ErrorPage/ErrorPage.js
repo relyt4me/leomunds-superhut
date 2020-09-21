@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import criticalFail from '../../assets/critical-fail.jpg';
 
-const ErrorPage = ({ error, setError, changePageTitle }) => {
-  changePageTitle("Leomund's Broken Superhut");
+const ErrorPage = ({ error, setError }) => {
   return (
     <section className='page-error'>
       <img src={criticalFail} className='critical-fail-icon' alt={`Red 20 sided dice set on fire with a rolled number of 1`} />
@@ -24,5 +23,4 @@ export default ErrorPage;
 ErrorPage.propTypes = {
   setError: PropTypes.func,
   error: PropTypes.string,
-  changePageTitle: PropTypes.func,
 };
