@@ -19,6 +19,7 @@ class SingleCategoryDisplay extends Component {
   }
 
   componentDidMount() {
+    this.props.changePageTitle();
     getItemsInCategory(this.props.categoryId)
       .then((results) => {
         this.setState({ itemsInCategory: results });
@@ -45,4 +46,5 @@ SingleCategoryDisplay.propTypes = {
   setError: PropTypes.func,
   categoryId: PropTypes.string,
   addItemToCart: PropTypes.func,
+  changePageTitle: PropTypes.func,
 };

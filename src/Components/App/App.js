@@ -64,29 +64,34 @@ class App extends Component {
           <Route
             path='/storefront'
             render={() => {
-              // this.changePageTitle("Leomund's Superhut");
-              return <CategoriesDisplay setError={this.setError} />;
+              return <CategoriesDisplay setError={this.setError} changePageTitle={this.changePageTitle} />;
             }}
           />
           <Route
             path='/error'
             render={() => {
-              // this.changePageTitle("Leomund's Broken Superhut");
               return <ErrorPage error={this.state.error} setError={this.setError} />;
             }}
           />
           <Route
             path='/:category/items'
             render={({ match }) => {
-              // this.changePageTitle(match.params.category);
-              return <SingleCategoryDisplay setError={this.setError} categoryId={match.params.category} addItemToCart={this.addItemToCart} />;
+              return (
+                <SingleCategoryDisplay
+                  setError={this.setError}
+                  categoryId={match.params.category}
+                  addItemToCart={this.addItemToCart}
+                  changePageTitle={() => {
+                    this.changePageTitle(match.params.category);
+                  }}
+                />
+              );
             }}
           />
           <Route
             path='/cart'
             render={() => {
-              // this.changePageTitle('Cart Checkout');
-              return <Cart cartItems={this.state.cartItems} clearCart={this.clearCart} removeItem={this.removeItem} />;
+              return <Cart cartItems={this.state.cartItems} clearCart={this.clearCart} removeItem={this.removeItem} changePageTitle={this.changePageTitle} />;
             }}
           />
         </Switch>
@@ -97,13 +102,3 @@ class App extends Component {
 }
 
 export default App;
-
-/**
- * APP
- *  Header * Search/ Page Title/ Back to Store/ Cart
- *  (Welcome)
- *  (CategoriesDisplay) -Cards
- *  (ErrorPage)
- *  (Cart)
- *  (ItemDisplay)- cards
- */

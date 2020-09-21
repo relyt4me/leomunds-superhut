@@ -8,6 +8,7 @@ jest.mock('../../helpers/apiCalls');
 
 describe('SingleCategoryDisplay Component', () => {
   it('Should have the correct content when rendered', async () => {
+    const mockChangePageTitle = jest.fn();
     const mockItemsInCategory = [
       {
         index: 'arrow',
@@ -55,7 +56,7 @@ describe('SingleCategoryDisplay Component', () => {
     getItem.mockResolvedValueOnce(mockCrossbowBolt);
     render(
       <MemoryRouter>
-        <SingleCategoryDisplay />
+        <SingleCategoryDisplay changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
@@ -69,6 +70,7 @@ describe('SingleCategoryDisplay Component', () => {
   });
 
   it('Should show a Loading message until the data comes in', () => {
+    const mockChangePageTitle = jest.fn();
     const mockItemsInCategory = [
       {
         index: 'arrow',
@@ -90,7 +92,7 @@ describe('SingleCategoryDisplay Component', () => {
     getItem.mockResolvedValueOnce(mockArrow);
     render(
       <MemoryRouter>
-        <SingleCategoryDisplay />
+        <SingleCategoryDisplay changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
@@ -100,17 +102,31 @@ describe('SingleCategoryDisplay Component', () => {
   });
 
   it('Should call setError on a bad fetch call', async () => {
+    const mockChangePageTitle = jest.fn();
     getItemsInCategory.mockResolvedValueOnce(null);
     const mockSetError = jest.fn();
     mockSetError.mockResolvedValueOnce('bingo');
 
     render(
       <MemoryRouter>
-        <SingleCategoryDisplay setError={mockSetError} />
+        <SingleCategoryDisplay setError={mockSetError} changePageTitle={mockChangePageTitle} />
       </MemoryRouter>
     );
 
     await waitFor(() => expect(mockSetError).toBeCalledTimes(1));
     expect(mockSetError).toBeCalledWith('Bandits have blocked this trade route. Ill get my best sellswords on it');
+  });
+
+  it('Should call changePageTitle on load', () => {
+    const mockChangePageTitle = jest.fn();
+    getItemsInCategory.mockResolvedValueOnce([]);
+
+    render(
+      <MemoryRouter>
+        <SingleCategoryDisplay changePageTitle={mockChangePageTitle} />
+      </MemoryRouter>
+    );
+
+    expect(mockChangePageTitle).toBeCalledTimes(1);
   });
 });

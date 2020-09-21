@@ -10,6 +10,10 @@ class Cart extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.changePageTitle('Cart Checkout');
+  }
+
   createCartList = () => {
     return this.props.cartItems.map((item) => {
       const { name, cost, currency, index } = item;
@@ -102,4 +106,5 @@ Cart.propTypes = {
   cartItems: PropTypes.array,
   removeItem: PropTypes.func,
   clearCart: PropTypes.func,
+  changePageTitle: PropTypes.func,
 };

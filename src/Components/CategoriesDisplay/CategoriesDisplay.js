@@ -24,6 +24,7 @@ class CategoriesDisplay extends Component {
   }
 
   componentDidMount() {
+    this.props.changePageTitle("Leomund's Superhut");
     getCategories()
       .then((results) => {
         this.setState({ categories: results });
@@ -48,4 +49,5 @@ export default CategoriesDisplay;
 
 CategoriesDisplay.propTypes = {
   setError: PropTypes.func,
+  changePageTitle: PropTypes.func,
 };
