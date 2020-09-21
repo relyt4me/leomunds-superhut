@@ -6,7 +6,6 @@ import CategoriesDisplay from '../CategoriesDisplay/CategoriesDisplay';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import SingleCategoryDisplay from '../SingleCategoryDisplay/SingleCategoryDisplay';
 import Cart from '../Cart/Cart';
-// import SingleItemDisplay from '../SearchItemDisplay/SearchItemDisplay'
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 class App extends Component {
