@@ -20,9 +20,11 @@ class CategoriesDisplay extends Component {
   createCards() {
     return this.state.categories.map((category) => {
       return (
-        <Link to={`/${category.index}/items`} className='card-holder' key={category.index}>
-          <CategoryCard name={category.name} />
-        </Link>
+        <div className='card-holder' key={category.index}>
+          <Link to={`/${category.index}/items`} className='card-link'>
+            <CategoryCard name={category.name} />
+          </Link>
+        </div>
       );
     });
   }

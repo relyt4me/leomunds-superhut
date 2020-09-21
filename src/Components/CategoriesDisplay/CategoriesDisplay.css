@@ -45,9 +45,11 @@
 .card-holder {
   display: flex;
   justify-content: center;
+}
+.card-link {
   color: white;
 }
 
-.card-holder:visited {
+.card-link:visited {
   color: #fff888;
 }
