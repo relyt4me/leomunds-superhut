@@ -58,6 +58,7 @@ class Cart extends Component {
   };
 
   render() {
+    this.props.changePageTitle('Cart Checkout');
     const totalCost = this.addAllCosts();
     const { priceModify } = this.state;
     return (
@@ -102,4 +103,5 @@ Cart.propTypes = {
   cartItems: PropTypes.array,
   removeItem: PropTypes.func,
   clearCart: PropTypes.func,
+  changePageTitle: PropTypes.func,
 };
