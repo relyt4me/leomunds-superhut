@@ -53,6 +53,7 @@ https://github.com/relyt4me/leomunds-superhut
 ### How to see the product
 
 In terminal, go to the project directory and run 'npm start' to open the project in the browser.
+You can also see the product online here. [Deployed](https://leomunds-superhut.herokuapp.com/)
 
 ## Functionality
 
