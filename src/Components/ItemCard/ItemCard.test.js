@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemCard from './ItemCard';
-import { screen, render, waitFor } from '@testing-library/react';
+import { screen, render, waitFor, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { getItem } from '../../helpers/apiCalls';
 import '@testing-library/jest-dom';
@@ -79,5 +79,40 @@ describe('ItemCard Component', () => {
 
     await waitFor(() => expect(mockSetError).toBeCalledTimes(1));
     expect(mockSetError).toBeCalledWith('One of the items must have become possessed come back once we have dispelled this curse');
+  });
+
+  it('Should call addItemToCart when the add button is clicked', async () => {
+    const mockArrow = {
+      index: 'arrow',
+      name: 'Arrow',
+      cost: {
+        quantity: 10,
+        unit: 'gp',
+      },
+    };
+    const mockArrowItem = {
+      currency: 'gp',
+      cost: 10,
+      name: 'Arrow',
+      index: 'arrow',
+    };
+
+    getItem.mockResolvedValueOnce(mockArrow);
+
+    const mockItem = { index: 'arrow' };
+    const mockAddItemToCart = jest.fn();
+
+    render(
+      <MemoryRouter>
+        <ItemCard item={mockItem} addItemToCart={mockAddItemToCart} />
+      </MemoryRouter>
+    );
+
+    const button = await waitFor(() => screen.getByRole('button', { name: 'Add to Cart Item floating in hand' }));
+
+    fireEvent.click(button);
+
+    expect(mockAddItemToCart).toBeCalledTimes(1);
+    expect(mockAddItemToCart).toBeCalledWith(mockArrowItem);
   });
 });
