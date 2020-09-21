@@ -153,7 +153,7 @@ describe('Integration testing', () => {
     const searchInput = await waitFor(() => screen.getByRole('textbox'));
     const searchButton = screen.getByRole('button', { name: 'Find' });
 
-    fireEvent.change(searchInput, { target: { value: 'Arrow' } });
+    fireEvent.change(searchInput, { target: { value: 'Sword' } });
     fireEvent.click(searchButton);
 
     const addItemButton = await waitFor(() => screen.getByRole('button', { name: 'Add to Cart Item floating in hand' }));
@@ -166,10 +166,10 @@ describe('Integration testing', () => {
 
     fireEvent.click(cartButton);
 
-    const arrowItem = screen.getByText('Sword');
+    const swordItem = screen.getByText('Sword');
     const removeButton = screen.getByRole('button', { name: 'Remove' });
 
-    expect(arrowItem).toBeInTheDocument();
+    expect(swordItem).toBeInTheDocument();
     expect(removeButton).toBeInTheDocument();
   });
 
@@ -189,11 +189,24 @@ describe('Integration testing', () => {
     fireEvent.click(adventureCard);
 
     const arrowCardAddButton = await waitFor(() => screen.getAllByRole('button', { name: 'Add to Cart Item floating in hand' })[0]);
-    const swordCardAddButton = screen.getAllByRole('button', { name: 'Add to Cart Item floating in hand' })[0];
+    const swordCardAddButton = screen.getAllByRole('button', { name: 'Add to Cart Item floating in hand' })[1];
 
     fireEvent.click(arrowCardAddButton);
     fireEvent.click(swordCardAddButton);
 
-    const 
+    const cartButton = screen.getByRole('button', { name: 'My Cart Horse pulling a cart 2' });
+
+    expect(cartButton).toBeInTheDocument();
+
+    fireEvent.click(cartButton);
+
+    const arrowItem = screen.getByText('Arrow');
+    const removeButtons = screen.getAllByRole('button', { name: 'Remove' });
+
+    expect(arrowItem).toBeInTheDocument();
+
+    fireEvent.click(removeButtons[0]);
+
+    expect(arrowItem).not.toBeInTheDocument();
   });
 });
