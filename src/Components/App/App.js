@@ -19,6 +19,27 @@ class App extends Component {
     };
   }
 
+  addItemToCart = (item) => {
+    this.setState({ cartItems: [...this.state.cartItems, item] });
+  };
+
+  removeItem = (index) => {
+    let foundIndex = this.state.cartItems.findIndex((item) => {
+      return item.index === index;
+    });
+
+    if (foundIndex === undefined) {
+      return;
+    }
+    const copyOfCart = this.state.cartItems;
+    copyOfCart.splice(foundIndex, 1);
+    this.setState({ cartItems: copyOfCart });
+  };
+
+  clearCart = () => {
+    this.setState({ cartItems: [] });
+  };
+
   changePageTitle = (newTitle) => {
     this.setState({ pageTitle: newTitle });
   };
@@ -58,14 +79,14 @@ class App extends Component {
             path='/:category/items'
             render={({ match }) => {
               // this.changePageTitle(match.params.category);
-              return <SingleCategoryDisplay setError={this.setError} categoryId={match.params.category} />;
+              return <SingleCategoryDisplay setError={this.setError} categoryId={match.params.category} addItemToCart={this.addItemToCart} />;
             }}
           />
           <Route
             path='/cart'
             render={() => {
               // this.changePageTitle('Cart Checkout');
-              return <Cart />;
+              return <Cart cartItems={this.state.cartItems} clearCart={this.clearCart} removeItem={this.removeItem} />;
             }}
           />
         </Switch>
