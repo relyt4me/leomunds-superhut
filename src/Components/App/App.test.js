@@ -209,4 +209,29 @@ describe('Integration testing', () => {
 
     expect(arrowItem).not.toBeInTheDocument();
   });
+
+  it('should go to the error screen when fetching an error from the storefront and be able to return to storefront', async () => {
+    getCategories.mockRejectedValueOnce({ error: 'failed' });
+
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const getStartedButton = await waitFor(() => screen.getByRole('button', { name: 'Get Started at the Storefront' }));
+
+    fireEvent.click(getStartedButton);
+
+    const errorMessage = await waitFor(() => screen.getByAltText('Red 20 sided dice set on fire with a rolled number of 1'));
+    const returnHomeButton = screen.getByRole('button', { name: 'Return Home' });
+
+    expect(errorMessage).toBeInTheDocument();
+
+    fireEvent.click(returnHomeButton);
+
+    const welcomeHeader = screen.getByRole('heading', { name: "Welcome to Leomund's Superhut" });
+
+    expect(welcomeHeader).toBeInTheDocument();
+  });
 });
