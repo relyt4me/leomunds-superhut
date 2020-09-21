@@ -13,11 +13,57 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      cartItems: [],
+      cartItems: [
+        {
+          currency: 'gp',
+          cost: 3,
+          name: 'Item1',
+          index: 'item1',
+        },
+        {
+          currency: 'sp',
+          cost: 8,
+          name: 'Item 2',
+          index: 'item2',
+        },
+        {
+          currency: 'cp',
+          cost: 1,
+          name: 'Item 3',
+          index: 'item3',
+        },
+        {
+          currency: 'gp',
+          cost: 2000,
+          name: 'Item 4',
+          index: 'item4',
+        },
+      ],
       error: '',
       pageTitle: "Leomund's Superhut",
     };
   }
+
+  addItemToCart = (item) => {
+    this.setState({ cartItems: [...this.state.cartItems, item] });
+  };
+
+  removeItem = (index) => {
+    let foundIndex = this.state.cartItems.findIndex((item) => {
+      return item.index === index;
+    });
+
+    if (foundIndex === undefined) {
+      return;
+    }
+    const copyOfCart = this.state.cartItems;
+    copyOfCart.splice(foundIndex, 1);
+    this.setState({ cartItems: copyOfCart });
+  };
+
+  clearCart = () => {
+    this.setState({ cartItems: [] });
+  };
 
   changePageTitle = (newTitle) => {
     this.setState({ pageTitle: newTitle });
@@ -58,14 +104,14 @@ class App extends Component {
             path='/:category/items'
             render={({ match }) => {
               // this.changePageTitle(match.params.category);
-              return <SingleCategoryDisplay setError={this.setError} categoryId={match.params.category} />;
+              return <SingleCategoryDisplay setError={this.setError} categoryId={match.params.category} addItemToCart={this.addItemToCart} />;
             }}
           />
           <Route
             path='/cart'
             render={() => {
               // this.changePageTitle('Cart Checkout');
-              return <Cart cartItems={this.state.cartItems} />;
+              return <Cart cartItems={this.state.cartItems} clearCart={this.clearCart} removeItem={this.removeItem} />;
             }}
           />
         </Switch>
