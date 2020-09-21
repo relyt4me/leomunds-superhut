@@ -50,16 +50,6 @@ describe('CategoriesDisplay Component', () => {
   });
 
   it('Should show the update as the search is filled out', async () => {
-    // dont need
-    // const mockArrow = {
-    //   index: 'arrow',
-    //   name: 'Arrow',
-    //   cost: {
-    //     quantity: 10,
-    //     unit: 'gp',
-    //   },
-    // };
-    // getItem.mockResolvedValue(mockArrow);
     const mockChangePageTitle = jest.fn();
     getCategories.mockResolvedValueOnce([]);
 
@@ -74,6 +64,67 @@ describe('CategoriesDisplay Component', () => {
     fireEvent.change(searchInput, { target: { value: 'Arrow' } });
 
     expect(searchInput.value).toBe('Arrow');
+  });
+
+  // it('Should show the error when a bad search is made', async () => {
+  //   // const mockArrow = {
+  //   //   index: 'arrow',
+  //   //   name: 'Arrow',
+  //   //   cost: {
+  //   //     quantity: 10,
+  //   //     unit: 'gp',
+  //   //   },
+  //   // };
+  //   // getItem.mockResolvedValue(mockArrow);
+  //   getItem.mockResolvedValue(null);
+  //   const mockChangePageTitle = jest.fn();
+  //   getCategories.mockResolvedValueOnce([]);
+
+  //   render(
+  //     <MemoryRouter>
+  //       <CategoriesDisplay changePageTitle={mockChangePageTitle} />
+  //     </MemoryRouter>
+  //   );
+
+  //   const searchInput = await waitFor(() => screen.getByRole('textbox'));
+  //   const searchButton = screen.getByRole('button', { name: 'Find' });
+
+  //   fireEvent.change(searchInput, { target: { value: 'not an item' } });
+  //   fireEvent.click(searchButton);
+
+  //   const errorMessage = await waitFor(() => screen.getByRole('heading', { name: 'We could not find that item in our stores check the spelling or try a different search' }));
+
+  //   expect(errorMessage).toBeInTheDocument();
+  // });
+
+  it('Should show the error when a bad search is made', async () => {
+    const mockArrow = {
+      index: 'arrow',
+      name: 'Arrow',
+      cost: {
+        quantity: 10,
+        unit: 'gp',
+      },
+    };
+    getItem.mockResolvedValue(mockArrow);
+    const mockChangePageTitle = jest.fn();
+    getCategories.mockResolvedValueOnce([]);
+
+    render(
+      <MemoryRouter>
+        <CategoriesDisplay changePageTitle={mockChangePageTitle} />
+      </MemoryRouter>
+    );
+
+    const searchInput = await waitFor(() => screen.getByRole('textbox'));
+    const searchButton = screen.getByRole('button', { name: 'Find' });
+
+    fireEvent.change(searchInput, { target: { value: 'Arrow' } });
+    fireEvent.click(searchButton);
+
+    const arrowCardTitle = await waitFor(() => screen.getByRole('heading', { name: 'Arrow' }));
+
+    expect(arrowCardTitle).toBeInTheDocument();
   });
 
   it('Should show a Loading message until the data comes in', () => {
