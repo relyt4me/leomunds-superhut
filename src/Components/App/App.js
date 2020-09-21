@@ -64,7 +64,7 @@ class App extends Component {
           <Route
             path='/storefront'
             render={() => {
-              return <CategoriesDisplay setError={this.setError} changePageTitle={this.changePageTitle} />;
+              return <CategoriesDisplay setError={this.setError} changePageTitle={this.changePageTitle} addItemToCart={this.addItemToCart} />;
             }}
           />
           <Route
