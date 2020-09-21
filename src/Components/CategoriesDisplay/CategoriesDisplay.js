@@ -63,11 +63,11 @@ class CategoriesDisplay extends Component {
             Enter an item name you would find in the players handbook:
           </label>
           <input type='text' id='search' className='search-input' onChange={this.updateSearch} value={searchPhrase}></input>
-          <button aria-label='Find' onClick={this.searchForItem}>
+          <button className='search-button' aria-label='Find' onClick={this.searchForItem}>
             Search
           </button>
         </form>
-        {badSearch && <h1 className='search-error'>We could not find that item in our stores check the spelling or try a different search</h1>}
+        {badSearch && <h3 className='search-error'>We could not find that item in our stores check the spelling or try a different search</h3>}
         {foundSearchItem.index && <ItemCard item={foundSearchItem} setError={this.props.setError} addItemToCart={this.props.addItemToCart} />}
         {isLoading && <h1>Loading...</h1>}
         {!isLoading && this.createCards()}
