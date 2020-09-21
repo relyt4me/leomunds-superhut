@@ -19,7 +19,9 @@ class Cart extends Component {
           <p className='cart-item-cost'>
             {cost} {currency}
           </p>
-          <button onClick={() => this.props.removeItem(index)}>Remove</button>
+          <button className='cart-item-button' onClick={() => this.props.removeItem(index)}>
+            Remove
+          </button>
         </li>
       );
     });
@@ -61,11 +63,13 @@ class Cart extends Component {
     return (
       <section className='cart-page'>
         <article className='cart-list'>
-          <ul>
+          <ul className='cart-list-holder'>
             <li className='cart-item cart-item-header'>
               <h3 className='cart-item-title'>Name</h3>
               <p className='cart-item-cost'>Cost</p>
-              <button onClick={this.props.clearCart}>Clear Cart</button>
+              <button className='clear-cart-button' onClick={this.props.clearCart}>
+                Clear Cart
+              </button>
             </li>
             {this.createCartList()}
           </ul>
