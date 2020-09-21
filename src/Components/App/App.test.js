@@ -116,4 +116,26 @@ describe('Integration testing', () => {
     expect(priceModifyLabel).toBeInTheDocument();
     expect(newPageTitle).toBeInTheDocument();
   });
+
+  it('should allow a user to click back to the storefront from any page', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const cartButton = await waitFor(() => screen.getByRole('button', { name: 'My Cart Horse pulling a cart 0' }));
+
+    fireEvent.click(cartButton);
+
+    const storeFrontButton = screen.getByRole('button', { name: 'Return to Storefront' });
+
+    fireEvent.click(storeFrontButton);
+
+    const adventureCard = await waitFor(() => screen.getByRole('heading', { name: 'Adventuring Gear' }));
+    const newPageTitle = screen.getByRole('heading', { name: "Leomund's Superhut" });
+
+    expect(adventureCard).toBeInTheDocument();
+    expect(newPageTitle).toBeInTheDocument();
+  });
 });
