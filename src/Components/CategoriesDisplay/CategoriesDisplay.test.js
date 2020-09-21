@@ -35,7 +35,7 @@ describe('CategoriesDisplay Component', () => {
     );
 
     const adventureGearCardTitle = await waitFor(() => screen.getByRole('heading', { name: 'Adventuring Gear' }));
-    const searchLabel = screen.getByText('Enter an item name you would find in the players handbook:');
+    const searchLabel = screen.getByText("Enter an item's complete name you would find in the player's handbook:");
     const searchInput = screen.getByRole('textbox');
     const searchButton = screen.getByRole('button', { name: 'Find' });
     const allShelfIcons = screen.getAllByAltText('Items sitting on a shelf');
@@ -97,7 +97,7 @@ describe('CategoriesDisplay Component', () => {
     fireEvent.change(searchInput, { target: { value: 'not an item' } });
     fireEvent.click(searchButton);
 
-    const errorMessage = await waitFor(() => screen.getByRole('heading', { name: 'We could not find that item in our stores check the spelling or try a different search' }));
+    const errorMessage = await waitFor(() => screen.getByText('We could not find', { exact: false }));
 
     expect(errorMessage).toBeInTheDocument();
   });
