@@ -103,7 +103,7 @@ describe('SingleCategoryDisplay Component', () => {
 
   it('Should call setError on a bad fetch call', async () => {
     const mockChangePageTitle = jest.fn();
-    getItemsInCategory.mockResolvedValueOnce(null);
+    getItemsInCategory.mockRejectedValueOnce({ error: 'fail' });
     const mockSetError = jest.fn();
     mockSetError.mockResolvedValueOnce('bingo');
 

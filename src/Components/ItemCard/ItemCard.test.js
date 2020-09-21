@@ -67,7 +67,7 @@ describe('ItemCard Component', () => {
   });
 
   it('Should call setError on a bad fetch call', async () => {
-    getItem.mockResolvedValueOnce(null);
+    getItem.mockRejectedValueOnce({ error: 'fail' });
     const mockSetError = jest.fn();
     mockSetError.mockResolvedValueOnce('bingo');
 

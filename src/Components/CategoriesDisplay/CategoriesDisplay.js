@@ -58,17 +58,23 @@ class CategoriesDisplay extends Component {
     const { searchPhrase, badSearch, foundSearchItem } = this.state;
     return (
       <section className='categories-display'>
-        <form className='search-bar'>
-          <label htmlFor='search' className='search-label'>
-            Enter an item name you would find in the players handbook:
-          </label>
-          <input type='text' id='search' className='search-input' onChange={this.updateSearch} value={searchPhrase}></input>
-          <button aria-label='Find' onClick={this.searchForItem}>
-            Search
-          </button>
-        </form>
-        {badSearch && <h1 className='search-error'>We could not find that item in our stores check the spelling or try a different search</h1>}
-        {foundSearchItem.index && <ItemCard item={foundSearchItem} setError={this.props.setError} addItemToCart={this.props.addItemToCart} />}
+        {!isLoading && (
+          <form className='search-bar'>
+            <label htmlFor='search' className='search-label'>
+              Enter an item name you would find in the players handbook:
+            </label>
+            <input type='text' id='search' className='search-input' onChange={this.updateSearch} value={searchPhrase}></input>
+            <button className='search-button' aria-label='Find' onClick={this.searchForItem}>
+              Search
+            </button>
+          </form>
+        )}
+        {badSearch && <h3 className='search-error'>We could not find that item in our stores check the spelling or try a different search</h3>}
+        {foundSearchItem.index && (
+          <div className='found-item-wrapper'>
+            <ItemCard item={foundSearchItem} setError={this.props.setError} addItemToCart={this.props.addItemToCart} />
+          </div>
+        )}
         {isLoading && <h1>Loading...</h1>}
         {!isLoading && this.createCards()}
       </section>
