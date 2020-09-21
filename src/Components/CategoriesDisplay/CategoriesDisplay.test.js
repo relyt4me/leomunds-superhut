@@ -1,8 +1,8 @@
 import React from 'react';
 import CategoriesDisplay from './CategoriesDisplay';
-import { screen, render, waitFor } from '@testing-library/react';
+import { screen, render, waitFor, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { getCategories } from '../../helpers/apiCalls';
+import { getCategories, getItem } from '../../helpers/apiCalls';
 import '@testing-library/jest-dom';
 jest.mock('../../helpers/apiCalls');
 
@@ -47,6 +47,33 @@ describe('CategoriesDisplay Component', () => {
     expect(searchButton).toBeInTheDocument();
     expect(allShelfIcons.length).toEqual(3);
     expect(arcaneFociCardTitle).toBeInTheDocument();
+  });
+
+  it('Should show the update as the search is filled out', async () => {
+    // dont need
+    // const mockArrow = {
+    //   index: 'arrow',
+    //   name: 'Arrow',
+    //   cost: {
+    //     quantity: 10,
+    //     unit: 'gp',
+    //   },
+    // };
+    // getItem.mockResolvedValue(mockArrow);
+    const mockChangePageTitle = jest.fn();
+    getCategories.mockResolvedValueOnce([]);
+
+    render(
+      <MemoryRouter>
+        <CategoriesDisplay changePageTitle={mockChangePageTitle} />
+      </MemoryRouter>
+    );
+
+    const searchInput = await waitFor(() => screen.getByRole('textbox'));
+
+    fireEvent.change(searchInput, { target: { value: 'Arrow' } });
+
+    expect(searchInput.value).toBe('Arrow');
   });
 
   it('Should show a Loading message until the data comes in', () => {
