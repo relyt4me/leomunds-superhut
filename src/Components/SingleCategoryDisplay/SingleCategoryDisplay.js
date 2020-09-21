@@ -29,6 +29,7 @@ class SingleCategoryDisplay extends Component {
   }
 
   render() {
+    this.props.changePageTitle();
     const isLoading = !this.state.itemsInCategory.length;
     return (
       <section className='items-display'>
@@ -45,4 +46,5 @@ SingleCategoryDisplay.propTypes = {
   setError: PropTypes.func,
   categoryId: PropTypes.string,
   addItemToCart: PropTypes.func,
+  changePageTitle: PropTypes.func,
 };

@@ -24,4 +24,5 @@ export default ErrorPage;
 ErrorPage.propTypes = {
   setError: PropTypes.func,
   error: PropTypes.string,
+  changePageTitle: PropTypes.func,
 };
