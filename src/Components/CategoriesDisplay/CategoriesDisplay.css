@@ -37,6 +37,11 @@
   text-align: center;
 }
 
+.item-card {
+  grid-area: 2/1/3/4;
+  justify-self: center;
+}
+
 .card-holder {
   display: flex;
   justify-content: center;
