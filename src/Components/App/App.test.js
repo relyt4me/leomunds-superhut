@@ -23,15 +23,45 @@ describe('App Component', () => {
 });
 
 describe('Integration testing', () => {
-  it('should allow a user to move from welcome page to the storefront', async () => {
-    getCategories.mockResolvedValueOnce([
+  beforeEach(() => {
+    const mockArrow = {
+      index: 'arrow',
+      name: 'Arrow',
+      cost: {
+        quantity: 10,
+        unit: 'gp',
+      },
+    };
+    const mockSword = {
+      index: 'sword',
+      name: 'Sword',
+      cost: {
+        quantity: 5,
+        unit: 'sp',
+      },
+    };
+    getCategories.mockResolvedValue([
       {
         index: 'adventuring-gear',
         name: 'Adventuring Gear',
         url: '/api/equipment-categories/adventuring-gear',
       },
     ]);
+    getItemsInCategory.mockResolvedValue([
+      {
+        index: 'arrow',
+        name: 'Arrow',
+      },
+      {
+        index: 'sword',
+        name: 'Sword',
+      },
+    ]);
+    getItem.mockResolvedValueOnce(mockArrow);
+    getItem.mockResolvedValueOnce(mockSword);
+  });
 
+  it('should allow a user to move from welcome page to the storefront', async () => {
     render(
       <MemoryRouter>
         <App />
@@ -48,29 +78,6 @@ describe('Integration testing', () => {
   });
 
   it('should allow a user to click on a category and see all of the items listed', async () => {
-    const mockArrow = {
-      index: 'arrow',
-      name: 'Arrow',
-      cost: {
-        quantity: 10,
-        unit: 'gp',
-      },
-    };
-    getCategories.mockResolvedValueOnce([
-      {
-        index: 'adventuring-gear',
-        name: 'Adventuring Gear',
-        url: '/api/equipment-categories/adventuring-gear',
-      },
-    ]);
-    getItemsInCategory.mockResolvedValueOnce([
-      {
-        index: 'arrow',
-        name: 'Arrow',
-      },
-    ]);
-    getItem.mockResolvedValueOnce(mockArrow);
-
     render(
       <MemoryRouter>
         <App />
