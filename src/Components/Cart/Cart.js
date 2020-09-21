@@ -88,7 +88,7 @@ class Cart extends Component {
           <label htmlFor='price-modify' className='price-modify-label'>
             Price Modify: {priceModify * 100} %
           </label>
-          <input type='range' id='price-modify' name='price-modify' min='-1' max='1' step='0.1' onChange={this.updatePriceModifyInput} value={priceModify}></input>
+          <input type='range' id='price-modify' className='price-modify' min='-1' max='1' step='0.1' onChange={this.updatePriceModifyInput} value={priceModify}></input>
           <h3 className='modified-total'>
             <span className='cart-titles'>Modified Total: </span>
             <br></br>
